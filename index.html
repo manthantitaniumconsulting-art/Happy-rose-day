@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Rose Day ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#ff1b6b,#c77dff,#ff8fab);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+h1{
+margin-top:60px;
+font-family:'Great Vibes',cursive;
+font-size:4rem;
+}
+
+#name{
+color:#fff3b0;
+text-shadow:0 0 25px #ffd700;
+}
+
+.gallery{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
+margin:30px;
+}
+
+.gallery img{
+width:200px;
+border-radius:20px;
+box-shadow:0 12px 25px rgba(0,0,0,.4);
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.letter{
+background:#fff;
+color:#b1004b;
+max-width:850px;
+margin:50px auto;
+padding:40px;
+border-radius:25px;
+font-style:italic;
+font-size:1.3rem;
+box-shadow:0 20px 40px rgba(0,0,0,.5);
+position:relative;
+}
+
+.letter:before{
+content:\"💌 Love Letter\";
+display:block;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+#typing{
+white-space:pre-line;
+}
+
+.rose{
+position:fixed;
+bottom:-50px;
+font-size:28px;
+animation:float linear infinite;
+}
+
+@keyframes float{
+to{transform:translateY(-120vh)}
+}
+
+.corner{
+position:fixed;
+bottom:0;
+font-size:90px;
+}
+
+.left{left:10px}
+.right{right:10px}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<h1>Happy Rose Day <span id="name">My Love</span> ❤️</h1>
+
+<div class="gallery">
+<img src="photo1.jpeg">
+<img src="photo2.jpeg">
+<img src="photo3.jpeg">
+<img src="photo4.jpeg">
+<img src="photo5.jpeg">
+</div>
+
+<div class="letter">
+<div id="typing"></div>
+</div>
+
+<div class="corner left">💐</div>
+<div class="corner right">💐</div>
+
+<script>
+// Rose rain
+function rose(){
+let r=document.createElement(\"div\");
+r.className=\"rose\";
+r.innerHTML=\"🌹\";
+r.style.left=Math.random()*100+\"vw\";
+r.style.fontSize=20+Math.random()*35+\"px\";
+r.style.animationDuration=4+Math.random()*5+\"s\";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),9000);
+}
+setInterval(rose,200);
+
+// Typing letter
+const msg=`❤️ Happy Rose Day, my love 🌹
+
+Just like a rose, you bring color, warmth, and beauty into my life. 
+Every day with you feels a little brighter, a little softer, and a lot more meaningful.
+
+Thank you for being my favorite person and my forever smile and to the girl who makes my heart bloom every single day 🌹
+
+If love had a face, it would look like you. 
+If happiness had a name, it would be yours. 
+I’m so lucky to call you mine. 🌹
+
+Every smile of yours makes my world brighter.  
+I’m lucky to have you forever ❤️`;
+
+let i=0;
+function type(){
+if(i<msg.length){
+document.getElementById(\"typing\").innerHTML+=msg.charAt(i);
+i++;
+setTimeout(type,45);
+}}
+type();
+</script>
+
+</body>
+</html>
