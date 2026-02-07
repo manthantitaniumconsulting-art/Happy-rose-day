@@ -56,13 +56,13 @@ border-radius:28px;
 box-shadow:0 25px 45px rgba(0,0,0,.6);
 }
 
+/* Love letter card (no image) */
 .letter{
 position:fixed;
 left:20px;
 bottom:40px;
 width:340px;
-background:#fff url("https://i.imgur.com/Jz6Z7Z4.png");
-background-size:cover;
+background:linear-gradient(#fff,#ffe6f0);
 color:#7b0030;
 padding:32px;
 border-radius:22px;
@@ -88,23 +88,26 @@ padding:15px;
 box-shadow:0 25px 45px rgba(0,0,0,.6);
 }
 
+/* Rose rain */
 .rose{
 position:fixed;
-top:-60px;
-width:45px;
+top:-70px;
+width:40px;
 pointer-events:none;
 animation:fall linear infinite;
+z-index:2;
 }
 
 @keyframes fall{
-to{transform:translateY(110vh) rotate(360deg);}
+to{transform:translateY(120vh) rotate(360deg);}
 }
 
+/* Bouquets */
 .bouquet{
 position:fixed;
 bottom:0;
-width:150px;
-z-index:5;
+width:170px;
+z-index:4;
 }
 
 .left-bq{left:0;}
@@ -138,38 +141,38 @@ z-index:5;
 <div id="typing"></div>
 </div>
 
-<img src="https://media.tenor.com/images/2c7f5e1b1b5fa13e0c9d22a1a7b8f9fa/tenor.gif" class="bouquet left-bq">
-<img src="https://media.tenor.com/images/2c7f5e1b1b5fa13e0c9d22a1a7b8f9fa/tenor.gif" class="bouquet right-bq">
+<!-- Bouquets -->
+<img src="https://media.tenor.com/3z8F1F1ZK-AAAAAC/rose-bouquet-flowers.gif" class="bouquet left-bq">
+<img src="https://media.tenor.com/3z8F1F1ZK-AAAAAC/rose-bouquet-flowers.gif" class="bouquet right-bq">
 
 <script>
 const music=document.getElementById("music");
 document.body.addEventListener("click",()=>music.play(),{once:true});
 
-/* Rose rain */
+/* Rose rain (working PNG) */
 function roseRain(){
 let r=document.createElement("img");
-r.src="https://i.imgur.com/OVx7JkE.png";
+r.src="https://i.imgur.com/4NJl6xB.png";
 r.className="rose";
 r.style.left=Math.random()*100+"vw";
 r.style.animationDuration=5+Math.random()*6+"s";
 document.body.appendChild(r);
-setTimeout(()=>r.remove(),12000);
+setTimeout(()=>r.remove(),13000);
 }
-setInterval(roseRain,350);
+setInterval(roseRain,300);
 
-/* Love letter typing */
+/* Typing love letter */
 const text=`❤️ Happy Rose Day, my love 🌹
 
 Just like a rose, you bring color, warmth, and beauty into my life.
-Every moment with you feels magical, calm, and full of love.
+Every moment with you feels magical and full of love.
 
-You are my favorite person, my safe place, and my forever happiness.
+You are my favorite person, my comfort, and my forever happiness.
 You make my heart bloom brighter every single day 🌹
 
 If love had a name — it would be yours.
 If dreams had a face — it would look like you.
 
-Thank you for choosing me, loving me, and making life beautiful.
 I’m lucky to have you forever ❤️`;
 
 let i=0;
