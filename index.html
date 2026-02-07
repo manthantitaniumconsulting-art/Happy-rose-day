@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Rose Day ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#ff0f4b,#ff85b3,#ff4f8b);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+h1{
+margin-top:70px;
+font-family:'Great Vibes',cursive;
+font-size:4rem;
+}
+
+#name{
+color:#fff2a8;
+text-shadow:0 0 25px #ffd700;
+animation:pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse{
+from{transform:scale(1)}
+to{transform:scale(1.07)}
+}
+
+.card{
+background:rgba(255,255,255,.18);
+padding:40px;
+margin:50px auto;
+border-radius:35px;
+max-width:900px;
+backdrop-filter:blur(12px);
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+font-style:italic;
+font-size:1.4rem;
+}
+
+#typing{
+min-height:120px;
+}
+
+.slideshow img{
+width:280px;
+border-radius:30px;
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+opacity:0;
+transition:1.5s;
+box-shadow:0 15px 30px rgba(0,0,0,.4);
+}
+
+.rose,.heart{
+position:fixed;
+bottom:-50px;
+font-size:28px;
+animation:rise linear infinite;
+}
+
+@keyframes rise{
+to{transform:translateY(-130vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" autoplay loop muted>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<h1>Happy Rose Day <span id="name">My Love</span> ❤️</h1>
+
+<div class="card">
+<div id="typing"></div>
+</div>
+
+<div class="slideshow">
+<img src="photo1.jpeg">
+<img src="photo2.jpeg">
+<img src="photo3.jpeg">
+<img src="photo4.jpeg">
+<img src="photo5.jpeg">
+</div>
+
+<script>
+// AUTOPLAY FIX
+window.addEventListener("click",()=> {
+let m=document.getElementById("music");
+m.muted=false;
+m.play();
+});
+
+// TYPING LOVE LETTER
+const text=`My love guddiya 🌹  
+Just like a rose, you bring beauty and warmth into my life.  
+Every smile of yours makes my world brighter.  
+You are my today, my tomorrow, my forever ❤️  
+I’m lucky beyond words to call you mine 💖`;
+
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,60);
+}}
+type();
+
+// SLIDESHOW
+let imgs=document.querySelectorAll(".slideshow img");
+let index=0;
+setInterval(()=>{
+imgs.forEach(img=>img.style.opacity=0);
+imgs[index].style.opacity=1;
+index=(index+1)%imgs.length;
+},3000);
+
+// ROSES + HEARTS
+function float(icon){
+let e=document.createElement("div");
+e.className=Math.random()>.5?'rose':'heart';
+e.innerHTML=icon;
+e.style.left=Math.random()*100+"vw";
+e.style.fontSize=20+Math.random()*40+"px";
+e.style.animationDuration=4+Math.random()*5+"s";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),9000);
+}
+
+setInterval(()=>float("🌹"),200);
+setInterval(()=>float("❤️"),350);
+</script>
+
+</body>
+</html>
