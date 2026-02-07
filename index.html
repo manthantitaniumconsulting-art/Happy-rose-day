@@ -10,7 +10,7 @@ body{
 margin:0;
 font-family:Poppins;
 background:
-linear-gradient(rgba(0,0,0,.4),rgba(255,0,100,.4)),
+linear-gradient(rgba(0,0,0,.45),rgba(255,0,120,.45)),
 url("https://images.pexels.com/photos/196664/pexels-photo-196664.jpeg") center/cover fixed;
 overflow:hidden;
 color:white;
@@ -20,16 +20,11 @@ h1{
 text-align:center;
 font-family:'Great Vibes';
 font-size:4.5rem;
-margin-top:40px;
-text-shadow:0 0 30px pink;
+margin-top:35px;
+text-shadow:0 0 35px pink;
 }
 
-.tap{
-text-align:center;
-font-size:1.1rem;
-opacity:.85;
-margin-top:-10px;
-}
+.tap{text-align:center;opacity:.9;margin-top:-10px;}
 
 .gallery{
 display:flex;
@@ -41,8 +36,8 @@ margin-top:50px;
 
 .photo{
 opacity:0;
-transform:translateY(160px);
-animation:slideUp 1.4s ease forwards;
+transform:translateY(220px) scale(.85);
+animation:slideUp 1.8s cubic-bezier(.17,.89,.32,1.49) forwards;
 }
 
 .photo:nth-child(1){animation-delay:.3s}
@@ -52,7 +47,7 @@ animation:slideUp 1.4s ease forwards;
 .photo:nth-child(5){animation-delay:1.5s}
 
 @keyframes slideUp{
-to{opacity:1; transform:translateY(0);}
+to{opacity:1;transform:translateY(0) scale(1);}
 }
 
 .gallery img{
@@ -64,21 +59,23 @@ box-shadow:0 25px 45px rgba(0,0,0,.6);
 .letter{
 position:fixed;
 left:20px;
-bottom:30px;
-width:330px;
+bottom:40px;
+width:340px;
 background:#fff url("https://i.imgur.com/Jz6Z7Z4.png");
 background-size:cover;
-color:#8b0037;
-padding:28px;
-border-radius:18px;
-box-shadow:0 30px 50px rgba(0,0,0,.6);
+color:#7b0030;
+padding:32px;
+border-radius:22px;
+box-shadow:
+0 30px 60px rgba(0,0,0,.6),
+0 0 25px rgba(255,0,120,.4);
 font-style:italic;
+animation:float 3s ease-in-out infinite;
 }
 
-#typing{
-white-space:pre-line;
-font-size:14px;
-}
+@keyframes float{50%{transform:translateY(-8px);} }
+
+#typing{white-space:pre-line;font-size:14px;}
 
 .calendar{
 margin:35px auto;
@@ -91,10 +88,10 @@ padding:15px;
 box-shadow:0 25px 45px rgba(0,0,0,.6);
 }
 
-.petal{
+.rose{
 position:fixed;
-top:-50px;
-width:30px;
+top:-60px;
+width:45px;
 pointer-events:none;
 animation:fall linear infinite;
 }
@@ -102,6 +99,16 @@ animation:fall linear infinite;
 @keyframes fall{
 to{transform:translateY(110vh) rotate(360deg);}
 }
+
+.bouquet{
+position:fixed;
+bottom:0;
+width:150px;
+z-index:5;
+}
+
+.left-bq{left:0;}
+.right-bq{right:0;transform:scaleX(-1);}
 </style>
 </head>
 
@@ -131,45 +138,45 @@ to{transform:translateY(110vh) rotate(360deg);}
 <div id="typing"></div>
 </div>
 
-<script>
+<img src="https://media.tenor.com/images/2c7f5e1b1b5fa13e0c9d22a1a7b8f9fa/tenor.gif" class="bouquet left-bq">
+<img src="https://media.tenor.com/images/2c7f5e1b1b5fa13e0c9d22a1a7b8f9fa/tenor.gif" class="bouquet right-bq">
 
-/* Music tap play */
+<script>
 const music=document.getElementById("music");
 document.body.addEventListener("click",()=>music.play(),{once:true});
 
-/* Falling petals */
-function petal(){
-let p=document.createElement("img");
-p.src="https://i.imgur.com/5RHR6Ku.png";
-p.className="petal";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=6+Math.random()*6+"s";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),13000);
+/* Rose rain */
+function roseRain(){
+let r=document.createElement("img");
+r.src="https://i.imgur.com/OVx7JkE.png";
+r.className="rose";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=5+Math.random()*6+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),12000);
 }
-setInterval(petal,260);
+setInterval(roseRain,350);
 
-/* Typing love letter */
+/* Love letter typing */
 const text=`❤️ Happy Rose Day, my love 🌹
 
 Just like a rose, you bring color, warmth, and beauty into my life.
-Every day with you feels a little brighter, a little softer, and a lot more meaningful.
+Every moment with you feels magical, calm, and full of love.
 
-Thank you for being my favorite person and my forever smile and to the girl who makes my heart bloom every single day 🌹
+You are my favorite person, my safe place, and my forever happiness.
+You make my heart bloom brighter every single day 🌹
 
-If love had a face, it would look like you.
-If happiness had a name, it would be yours.
-I’m so lucky to call you mine. 🌹
+If love had a name — it would be yours.
+If dreams had a face — it would look like you.
 
-Every smile of yours makes my world brighter.
+Thank you for choosing me, loving me, and making life beautiful.
 I’m lucky to have you forever ❤️`;
 
 let i=0;
 function type(){
 if(i<text.length){
-typing.innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,35);
+typing.innerHTML+=text[i++];
+setTimeout(type,30);
 }}
 type();
 
@@ -183,7 +190,6 @@ let hrs=Math.floor((d%(1000*60*60*24))/(1000*60*60));
 let min=Math.floor((d%(1000*60*60))/(1000*60));
 timer.innerHTML=`${days} Days<br>${hrs} Hours ${min} Minutes`;
 },1000);
-
 </script>
 
 </body>
